@@ -1,0 +1,3 @@
+com.baozi.config.HttpClientConfig
+com.baozi.GrpcConsulProviderAutoConfiguration
+com.baozi.GrpcConsulCustomerAutoConfiguration
