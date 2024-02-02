@@ -4,6 +4,7 @@ import com.alibaba.fastjson2.JSON;
 import com.baozi.annotations.EnableRegister;
 import com.baozi.annotations.GrpcService;
 import com.baozi.cosul.bean.service.NewService;
+import com.baozi.exception.ConsulException;
 import com.baozi.exception.GrpcServerStartException;
 import com.baozi.exception.IllegalServiceTypeException;
 import com.baozi.properties.DiscoveryProperties;
@@ -16,6 +17,8 @@ import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.io.support.ClassicRequestBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
@@ -41,6 +44,8 @@ import java.util.Map;
 @DependsOn({"consulHttpClient"})
 @ConditionalOnProperty("grpc-consul.discovery.register")
 public class GrpcConsulProviderAutoConfiguration implements ApplicationListener<ApplicationStartedEvent>, DisposableBean {
+    private final Logger logger = LoggerFactory.getLogger(GrpcConsulProviderAutoConfiguration.class);
+
     private final ApplicationContext applicationContext;
     private final GrpcConsulProperties grpcConsulProperties;
     private final DiscoveryProperties discoveryProperties;
@@ -92,9 +97,9 @@ public class GrpcConsulProviderAutoConfiguration implements ApplicationListener<
                     ClassicRequestBuilder.put("/v1/agent/service/register")
                             .setEntity(JSON.toJSONString(newService), ContentType.APPLICATION_JSON).build(),
                     response -> response.getEntity().toString());
-            System.out.println(execute);
+            logger.info("服务注册{}", execute);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new ConsulException("consul服务注册失败", e);
         }
     }
 
@@ -121,7 +126,7 @@ public class GrpcConsulProviderAutoConfiguration implements ApplicationListener<
                     ClassicRequestBuilder.put("/v1/agent/service/deregister/" + service.getId())
                             .build(),
                     response -> response.getEntity().toString());
-            System.out.println(execute);
+            logger.info("服务注销{}", execute);
         }
         this.grpcServer.shutdown();
         this.grpcServer.awaitTermination();
