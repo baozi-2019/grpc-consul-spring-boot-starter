@@ -3,7 +3,8 @@ package com.baozi.processor;
 import com.baozi.annotations.GrpcService;
 import com.baozi.consul.ConsulClient;
 import com.baozi.consul.bean.service.NewService;
-import com.baozi.exception.GrpcServerStartException;
+import com.baozi.consul.exception.ConsulClientException;
+import com.baozi.exception.StarterException;
 import com.baozi.exception.IllegalServiceTypeException;
 import com.baozi.properties.DiscoveryProperties;
 import com.baozi.properties.GrpcConsulProperties;
@@ -58,8 +59,12 @@ public class GrpcConsulProviderRoundProcessor implements ApplicationListener<App
     public void destroy() throws Exception {
         DiscoveryProperties.Service service = this.discoveryProperties.getService();
         if (service.isTemporary()) {
-            boolean result = this.consulClient.deregisterService(service.getId());
-            logger.info("服务注销{}", result);
+            try {
+                boolean result = this.consulClient.deregisterService(service.getId());
+                logger.info("服务注销{}", result);
+            } catch (ConsulClientException e) {
+                logger.error("跳过服务注销", e);
+            }
         }
         this.grpcServer.shutdown();
         this.grpcServer.awaitTermination();
@@ -87,11 +92,16 @@ public class GrpcConsulProviderRoundProcessor implements ApplicationListener<App
         try {
             this.grpcServer = serverBuilder.build().start();
         } catch (IOException e) {
-            throw new GrpcServerStartException("grpc服务启动失败", e);
+            throw new StarterException("grpc服务启动失败", e);
         }
 
         NewService newService = getNewService(serviceProperties);
-        boolean result = consulClient.registerService(newService);
+        boolean result;
+        try {
+            result = consulClient.registerService(newService);
+        } catch (ConsulClientException e) {
+            throw new StarterException("注册服务错误", e);
+        }
         logger.info("服务注册{}", result);
     }
 }
