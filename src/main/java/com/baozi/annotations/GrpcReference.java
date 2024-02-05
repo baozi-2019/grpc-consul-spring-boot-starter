@@ -13,7 +13,4 @@ public @interface GrpcReference {
     String serviceName();
 
     Class<?> serviceBuildClass();
-
-    // 超时时间，单位（毫秒）
-    long timeout() default 5000;
 }

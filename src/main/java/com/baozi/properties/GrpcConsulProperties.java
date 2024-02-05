@@ -1,5 +1,6 @@
 package com.baozi.properties;
 
+import com.baozi.consul.properties.HttpClientProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 

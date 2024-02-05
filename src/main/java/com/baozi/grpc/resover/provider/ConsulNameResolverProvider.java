@@ -1,16 +1,13 @@
 package com.baozi.grpc.resover.provider;
 
+import com.baozi.consul.ConsulClient;
 import com.baozi.exception.IllegalGrpcSchemaException;
-import com.baozi.exception.IllegalSyntaxException;
 import com.baozi.grpc.resover.ConsulNameResolver;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import io.grpc.NameResolver;
 import io.grpc.NameResolverProvider;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.core5.http.HttpHost;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.time.Duration;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -23,12 +20,12 @@ public class ConsulNameResolverProvider extends NameResolverProvider {
     private final String SCHEMA = "consul";
     private final ScheduledExecutorService timerService;
     private final Duration resolveInterval;
-    private final CloseableHttpClient httpClient;
+    private final ConsulClient consulClient;
 
     private ConsulNameResolverProvider(Builder builder) {
         this.timerService = builder.timerService;
         this.resolveInterval = builder.resolveInterval;
-        this.httpClient = builder.httpClient;
+        this.consulClient = builder.consulClient;
     }
 
     @Override
@@ -58,16 +55,12 @@ public class ConsulNameResolverProvider extends NameResolverProvider {
         int consulPort = targetUri.getPort();
         checkArgument(consulPort >= 0 && consulPort <= 65535, "未解析到consul服务主机IP");
 
-        try {
-            return new ConsulNameResolver(this.timerService, this.resolveInterval,
-                    this.httpClient, serviceName, HttpHost.create("http://" + consulHost + ":" + consulPort));
-        } catch (URISyntaxException e) {
-            throw new IllegalSyntaxException(e);
-        }
+        return new ConsulNameResolver(this.timerService, this.resolveInterval,
+                this.consulClient, serviceName);
     }
 
-    public static Builder newBuilder(CloseableHttpClient httpClient) {
-        return new Builder(httpClient);
+    public static Builder newBuilder(ConsulClient consulClient) {
+        return new Builder(consulClient);
     }
 
     @Override
@@ -85,10 +78,10 @@ public class ConsulNameResolverProvider extends NameResolverProvider {
                         .build(),
                 new ThreadPoolExecutor.DiscardOldestPolicy());
         private Duration resolveInterval = Duration.ofMinutes(1);
-        private CloseableHttpClient httpClient;
+        private ConsulClient consulClient;
 
-        private Builder(CloseableHttpClient httpClient) {
-            this.httpClient = httpClient;
+        private Builder(ConsulClient consulClient) {
+            this.consulClient = consulClient;
         }
 
         public ScheduledExecutorService getTimerService() {
@@ -107,12 +100,12 @@ public class ConsulNameResolverProvider extends NameResolverProvider {
             this.resolveInterval = resolveInterval;
         }
 
-        public CloseableHttpClient getHttpClient() {
-            return httpClient;
+        public ConsulClient getConsulClient() {
+            return consulClient;
         }
 
-        public void setHttpClient(CloseableHttpClient httpClient) {
-            this.httpClient = httpClient;
+        public void setConsulClient(ConsulClient consulClient) {
+            this.consulClient = consulClient;
         }
 
         public Builder withTimeService(ScheduledExecutorService timeService) {

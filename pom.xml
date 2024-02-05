@@ -56,12 +56,17 @@
             <version>${grpc.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.httpcomponents.client5</groupId>
-            <artifactId>httpclient5</artifactId>
-            <version>5.3</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.httpcomponents.client5</groupId>-->
+<!--            <artifactId>httpclient5</artifactId>-->
+<!--            <version>5.3</version>-->
+<!--        </dependency>-->
 
+        <dependency>
+            <groupId>com.baozi</groupId>
+            <artifactId>consul-api</artifactId>
+            <version>1.0</version>
+        </dependency>
 
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>

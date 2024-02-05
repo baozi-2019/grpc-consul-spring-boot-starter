@@ -1,6 +1,7 @@
-package com.baozi.config;
+package com.baozi.processor;
 
 import com.baozi.annotations.GrpcReference;
+import com.baozi.consul.ConsulClient;
 import com.baozi.exception.FieldInitializationException;
 import com.baozi.grpc.resover.provider.ConsulNameResolverProvider;
 import com.baozi.properties.DiscoveryProperties;
@@ -9,11 +10,8 @@ import io.grpc.Channel;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.NameResolverRegistry;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanCreationException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
 import java.lang.reflect.Field;
@@ -27,15 +25,14 @@ public class GrpcClientBeanPostProcessor implements BeanPostProcessor {
     private final ConcurrentHashMap<String, Channel> grpcChannelMap;
     private final ConcurrentHashMap<String, Object> grpcClientMap;
 
-    @Autowired
     public GrpcClientBeanPostProcessor(
             GrpcConsulProperties grpcConsulProperties,
-            @Qualifier("consulHttpClient") CloseableHttpClient consulHttpClient
+            ConsulClient consulClient
     ) {
         DiscoveryProperties discoveryProperties = grpcConsulProperties.getDiscovery();
 
         // grpc服务注册器注入
-        NameResolverRegistry.getDefaultRegistry().register(ConsulNameResolverProvider.newBuilder(consulHttpClient)
+        NameResolverRegistry.getDefaultRegistry().register(ConsulNameResolverProvider.newBuilder(consulClient)
                 .withResolveInterval(Duration.ofSeconds(5)).build());
 
         String[] registerServiceNames = discoveryProperties.getRegisterServiceNames();
@@ -86,9 +83,7 @@ public class GrpcClientBeanPostProcessor implements BeanPostProcessor {
             Class<?> serviceBuildClass = grpcReference.serviceBuildClass();
             Channel grpcChannel = this.grpcChannelMap.get(localServiceName);
             Method serviceBuildClassMethod = serviceBuildClass.getMethod("newBlockingStub", Channel.class);
-            Object blockingStub = serviceBuildClassMethod.invoke(null, grpcChannel);
-            Method withDeadlineAfterMethod = blockingStub.getClass().getMethod("withDeadlineAfter", long.class, TimeUnit.class);
-            return withDeadlineAfterMethod.invoke(blockingStub, grpcReference.timeout(), TimeUnit.MILLISECONDS);
+            return serviceBuildClassMethod.invoke(null, grpcChannel);
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             throw new BeanCreationException("grpc创建失败", e);
         }
