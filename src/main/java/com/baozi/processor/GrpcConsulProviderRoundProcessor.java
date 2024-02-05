@@ -4,14 +4,15 @@ import com.baozi.annotations.GrpcService;
 import com.baozi.consul.ConsulClient;
 import com.baozi.consul.bean.service.NewService;
 import com.baozi.consul.exception.ConsulClientException;
-import com.baozi.exception.StarterException;
 import com.baozi.exception.IllegalServiceTypeException;
+import com.baozi.exception.StarterException;
 import com.baozi.properties.DiscoveryProperties;
 import com.baozi.properties.GrpcConsulProperties;
 import io.grpc.BindableService;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.ServerServiceDefinition;
+import io.grpc.health.v1.HealthGrpc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
@@ -29,15 +30,18 @@ public class GrpcConsulProviderRoundProcessor implements ApplicationListener<App
     private final DiscoveryProperties discoveryProperties;
     private final ConsulClient consulClient;
     private final ApplicationContext applicationContext;
+    private final HealthGrpc.HealthImplBase healthImplBase;
     private Server grpcServer;
 
     public GrpcConsulProviderRoundProcessor(GrpcConsulProperties grpcConsulProperties,
                                             ConsulClient consulClient,
-                                            ApplicationContext applicationContext) {
+                                            ApplicationContext applicationContext,
+                                            HealthGrpc.HealthImplBase healthImplBase) {
         this.grpcConsulProperties = grpcConsulProperties;
         this.discoveryProperties = this.grpcConsulProperties.getDiscovery();
         this.consulClient = consulClient;
         this.applicationContext = applicationContext;
+        this.healthImplBase = healthImplBase;
     }
 
     private static NewService getNewService(DiscoveryProperties.Service serviceProperties) {
@@ -52,6 +56,12 @@ public class GrpcConsulProviderRoundProcessor implements ApplicationListener<App
         serviceCheck.setHttp(check.getUrl());
         serviceCheck.setInterval(check.getInterval());
         newService.setCheck(serviceCheck);
+
+        NewService.Check check1 = new NewService.Check();
+        check1.setGrpc("10.8.0.6:5001");
+        check1.setInterval("5s");
+        check1.setGrpcUseTLS(false);
+        newService.setCheck(check1);
         return newService;
     }
 
@@ -76,9 +86,8 @@ public class GrpcConsulProviderRoundProcessor implements ApplicationListener<App
         Map<String, Object> beanMap = this.applicationContext.getBeansWithAnnotation(GrpcService.class);
 
         ServerBuilder<?> serverBuilder = ServerBuilder.forPort(serviceProperties.getPort());
+        serverBuilder.addService(this.healthImplBase);
         for (Object object : beanMap.values()) {
-            System.out.println(object.getClass().getCanonicalName());
-
             if (object instanceof BindableService bindableService) {
                 serverBuilder.addService(bindableService);
             } else if (object instanceof ServerServiceDefinition serverServiceDefinition) {
