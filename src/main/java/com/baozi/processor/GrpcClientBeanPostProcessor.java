@@ -45,6 +45,7 @@ public class GrpcClientBeanPostProcessor implements BeanPostProcessor {
                     .overrideAuthority(serviceName)
                     .defaultLoadBalancingPolicy("round_robin")
                     .disableRetry()
+                    .keepAliveTime(20, TimeUnit.SECONDS)
                     .usePlaintext().build();
             this.grpcChannelMap.put(serviceName, channel);
         }
