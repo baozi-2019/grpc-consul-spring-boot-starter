@@ -53,15 +53,10 @@ public class GrpcConsulProviderRoundProcessor implements ApplicationListener<App
 
         DiscoveryProperties.Service.ServiceCheckProperties check = serviceProperties.getCheck();
         NewService.Check serviceCheck = new NewService.Check();
-        serviceCheck.setHttp(check.getUrl());
+        serviceCheck.setGrpc(check.getUrl());
         serviceCheck.setInterval(check.getInterval());
+        serviceCheck.setGrpcUseTLS(check.isGrpcUseTls());
         newService.setCheck(serviceCheck);
-
-        NewService.Check check1 = new NewService.Check();
-        check1.setGrpc("10.8.0.6:5001");
-        check1.setInterval("5s");
-        check1.setGrpcUseTLS(false);
-        newService.setCheck(check1);
         return newService;
     }
 

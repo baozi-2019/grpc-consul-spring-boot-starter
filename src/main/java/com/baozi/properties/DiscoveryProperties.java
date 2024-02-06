@@ -69,6 +69,7 @@ public class DiscoveryProperties {
         public static class ServiceCheckProperties {
             private String url;
             private String interval = "5s";
+            private boolean grpcUseTls = false;
 
             public String getUrl() {
                 return url;
@@ -84,6 +85,14 @@ public class DiscoveryProperties {
 
             public void setInterval(String interval) {
                 this.interval = interval;
+            }
+
+            public boolean isGrpcUseTls() {
+                return grpcUseTls;
+            }
+
+            public void setGrpcUseTls(boolean grpcUseTls) {
+                this.grpcUseTls = grpcUseTls;
             }
         }
     }
