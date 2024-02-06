@@ -14,6 +14,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>3.2.1</spring.version>
         <grpc.version>1.60.0</grpc.version>
+        <consul-api.version>1.0.0</consul-api.version>
+        <fastjson.version>2.0.45</fastjson.version>
     </properties>
 
     <dependencies>
@@ -64,13 +66,13 @@
         <dependency>
             <groupId>com.baozi</groupId>
             <artifactId>consul-api</artifactId>
-            <version>1.0</version>
+            <version>${consul-api.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>
             <artifactId>fastjson2</artifactId>
-            <version>2.0.45</version>
+            <version>${fastjson.version}</version>
         </dependency>
     </dependencies>
 
