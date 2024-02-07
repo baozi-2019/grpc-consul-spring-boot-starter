@@ -67,7 +67,7 @@ public class ConfigEnvironmentPostProcessor implements EnvironmentPostProcessor 
             consulProperties.setHost(configProperties.getHost());
             consulProperties.setPort(configProperties.getPort());
             ConsulClient consulClient = new ConsulClient(configProperties.getHttpClient(), consulProperties);
-            // todo 获取远程配置，添加进spring boot容器
+            // 获取远程配置，添加进spring boot容器
             int i = 0;
             List<String> includeProfilesList = new LinkedList<>();
             while (true){
