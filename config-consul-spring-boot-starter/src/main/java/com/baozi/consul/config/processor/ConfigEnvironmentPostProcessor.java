@@ -45,11 +45,11 @@ public class ConfigEnvironmentPostProcessor implements EnvironmentPostProcessor 
 
         MutablePropertySources propertySources = environment.getPropertySources();
         Optional<PropertySource<?>> propertySourceOptional = propertySources.stream().filter(e -> e.getName().contains("application")).findFirst();
-        String applicationYmlName = propertySourceOptional.get().getName();
-        if (propertySourceOptional.isPresent())
-            propertySources.addBefore(applicationYmlName, propertySource);
-        else
+        if (propertySourceOptional.isPresent()) {
+            propertySources.addBefore(propertySourceOptional.get().getName(), propertySource);
+        } else {
             propertySources.addLast(propertySource);
+        }
 
         // 获取consul client
         com.baozi.consul.properties.ConsulProperties consulProperties = new com.baozi.consul.properties.ConsulProperties();
@@ -79,8 +79,11 @@ public class ConfigEnvironmentPostProcessor implements EnvironmentPostProcessor 
                 List<KVStore> kvStoreList = consulClient.readKey(serviceName + "/" + profileName);
                 if (kvStoreList == null) continue;
                 // 添加远程配置到spring容器
-                propertySources.addBefore(applicationYmlName, this.loader.load(profileName,
-                        new ByteArrayResource(kvStoreList.get(0).decodeValue().getBytes(StandardCharsets.UTF_8))).get(0));
+                if (propertySourceOptional.isPresent())
+                    propertySources.addBefore(propertySourceOptional.get().getName(), this.loader.load(profileName,
+                            new ByteArrayResource(kvStoreList.get(0).decodeValue().getBytes(StandardCharsets.UTF_8))).get(0));
+                else
+                    propertySources.addLast(this.loader.load(profileName, new ByteArrayResource(kvStoreList.get(0).decodeValue().getBytes(StandardCharsets.UTF_8))).get(0));
             }
         } catch (URISyntaxException e) {
             throw new ConfigStarterException("consul client初始化失败", e);
