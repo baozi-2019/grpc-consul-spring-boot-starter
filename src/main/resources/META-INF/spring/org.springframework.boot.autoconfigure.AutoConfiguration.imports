@@ -1,3 +1,0 @@
-com.baozi.config.ConsulClientConfig
-com.baozi.GrpcConsulProviderAutoConfiguration
-com.baozi.GrpcConsulCustomerAutoConfiguration

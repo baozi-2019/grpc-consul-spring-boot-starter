@@ -1,0 +1,3 @@
+com.baozi.consul.discovery.config.ConsulClientConfig
+com.baozi.consul.discovery.GrpcConsulProviderAutoConfiguration
+com.baozi.consul.discovery.GrpcConsulCustomerAutoConfiguration
