@@ -8,7 +8,7 @@ import static com.baozi.consul.common.Constant.CONFIG_PREFIX;
 @ConfigurationProperties(prefix = CONFIG_PREFIX)
 public class ConsulProperties {
     @NestedConfigurationProperty
-    private ConfigProperties config;
+    private ConfigProperties config = new ConfigProperties();
 
     public ConfigProperties getConfig() {
         return config;

@@ -6,7 +6,7 @@ public class ConfigProperties {
     private String host = "127.0.0.1";
     private int port = 8500;
     @NestedConfigurationProperty
-    private HttpClientProperties httpClient;
+    private HttpClientProperties httpClient = new HttpClientProperties();
 
     public String getHost() {
         return host;

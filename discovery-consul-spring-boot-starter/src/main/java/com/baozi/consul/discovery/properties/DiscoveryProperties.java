@@ -12,7 +12,7 @@ public class DiscoveryProperties {
     private Service service;
     private String[] registerServiceNames;
     @NestedConfigurationProperty
-    private HttpClientProperties httpClient;
+    private HttpClientProperties httpClient = new HttpClientProperties();
 
     public static class Service {
         private String id;
