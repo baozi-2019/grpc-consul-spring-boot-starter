@@ -17,7 +17,6 @@ import org.springframework.core.env.PropertySource;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.ClassPathResource;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -28,29 +27,29 @@ import java.util.List;
 import java.util.Optional;
 
 public class ConfigEnvironmentPostProcessor implements EnvironmentPostProcessor {
-    private final PropertySource<?> propertySource;
-    private final YamlPropertySourceLoader loader;
+    private final YamlPropertySourceLoader loader = new YamlPropertySourceLoader();
     private static final String INCLUDE_PROFILES_PROPERTY_NAME_KEY = "spring.profiles.include";
     private static final String SERVICE_NAME_KEY = "spring.application.name";
 
-    public ConfigEnvironmentPostProcessor() throws IOException {
-        this.loader = new YamlPropertySourceLoader();
-        ClassPathResource path = new ClassPathResource("application.yaml");
-        if (!path.exists()) path = new ClassPathResource("/config/application.yaml");
-        if (!path.exists()) path = new ClassPathResource("application-remote-config.yaml");
-        if (!path.exists()) path = new ClassPathResource("/config/application-remote-config.yaml");
-        if (!path.exists()) throw new FileNotFoundException("找不到配置中心相关配置");
-        this.propertySource = this.loader.load("remote-config-application", path).get(0);
-    }
-
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
+        ClassPathResource path = new ClassPathResource("application.yaml");
+        if (!path.exists()) path = new ClassPathResource("/config/application.yaml");
+        if (!path.exists()) throw new ConfigStarterException("找不到配置中心相关配置");
+        PropertySource<?> propertySource;
+        try {
+            propertySource = this.loader.load("remote-config-application", path).get(0);
+        } catch (IOException e) {
+            throw new ConfigStarterException("配置中心配置加载失败");
+        }
+
         MutablePropertySources propertySources = environment.getPropertySources();
         Optional<PropertySource<?>> propertySourceOptional = propertySources.stream().filter(e -> e.getName().contains("application")).findFirst();
+        String applicationYmlName = propertySourceOptional.get().getName();
         if (propertySourceOptional.isPresent())
-            propertySources.addBefore(propertySourceOptional.get().getName(), this.propertySource);
+            propertySources.addBefore(applicationYmlName, propertySource);
         else
-            propertySources.addLast(this.propertySource);
+            propertySources.addLast(propertySource);
 
         // 获取consul client
         com.baozi.consul.properties.ConsulProperties consulProperties = new com.baozi.consul.properties.ConsulProperties();
@@ -79,7 +78,8 @@ public class ConfigEnvironmentPostProcessor implements EnvironmentPostProcessor 
                 String profileName = "application-" + includeProfile + ".yaml";
                 List<KVStore> kvStoreList = consulClient.readKey(serviceName + "/" + profileName);
                 if (kvStoreList == null) continue;
-                propertySources.addLast(this.loader.load(profileName,
+                // 添加远程配置到spring容器
+                propertySources.addBefore(applicationYmlName, this.loader.load(profileName,
                         new ByteArrayResource(kvStoreList.get(0).decodeValue().getBytes(StandardCharsets.UTF_8))).get(0));
             }
         } catch (URISyntaxException e) {
