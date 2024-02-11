@@ -3,7 +3,9 @@ package com.baozi.consul.discovery;
 import com.baozi.consul.ConsulClient;
 import com.baozi.consul.common.Constant;
 import com.baozi.consul.discovery.annotations.GrpcService;
+import com.baozi.consul.discovery.grpc.interceptor.ErrorServerInterceptor;
 import com.baozi.consul.discovery.processor.GrpcConsulProviderRoundProcessor;
+import com.baozi.consul.discovery.processor.GrpcExceptionProcessor;
 import com.baozi.consul.discovery.properties.ConsulProperties;
 import io.grpc.health.v1.HealthCheckRequest;
 import io.grpc.health.v1.HealthCheckResponse;
@@ -45,12 +47,20 @@ public class GrpcConsulProviderAutoConfiguration {
     }
 
     @Bean
+    @ConditionalOnMissingBean
+    public GrpcExceptionProcessor grpcExceptionProcessor() {
+        return new GrpcExceptionProcessor();
+    }
+
+    @Bean
     public GrpcConsulProviderRoundProcessor grpcConsulProviderRoundProcessor(
             ConsulProperties consulProperties,
             ConsulClient consulClient,
             ApplicationContext applicationContext,
-            HealthGrpc.HealthImplBase healthCheckImpl) {
+            HealthGrpc.HealthImplBase healthCheckImpl,
+            GrpcExceptionProcessor grpcExceptionProcessor) {
+        ErrorServerInterceptor errorServerInterceptor = new ErrorServerInterceptor(grpcExceptionProcessor, consulProperties.getDiscovery());
         return new GrpcConsulProviderRoundProcessor(consulProperties, consulClient,
-                applicationContext, healthCheckImpl);
+                applicationContext, healthCheckImpl, errorServerInterceptor);
     }
 }

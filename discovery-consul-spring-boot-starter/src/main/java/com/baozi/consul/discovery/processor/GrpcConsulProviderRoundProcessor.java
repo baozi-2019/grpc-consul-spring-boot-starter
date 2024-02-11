@@ -2,11 +2,12 @@ package com.baozi.consul.discovery.processor;
 
 import com.baozi.consul.ConsulClient;
 import com.baozi.consul.bean.service.NewService;
+import com.baozi.consul.discovery.annotations.GrpcService;
+import com.baozi.consul.discovery.exception.DiscoveryStarterException;
+import com.baozi.consul.discovery.exception.IllegalServiceTypeException;
+import com.baozi.consul.discovery.grpc.interceptor.ErrorServerInterceptor;
 import com.baozi.consul.discovery.properties.ConsulProperties;
 import com.baozi.consul.discovery.properties.DiscoveryProperties;
-import com.baozi.consul.discovery.annotations.GrpcService;
-import com.baozi.consul.discovery.exception.IllegalServiceTypeException;
-import com.baozi.consul.discovery.exception.DiscoveryStarterException;
 import com.baozi.consul.exception.ConsulClientException;
 import io.grpc.BindableService;
 import io.grpc.Server;
@@ -30,16 +31,19 @@ public class GrpcConsulProviderRoundProcessor implements ApplicationListener<App
     private final ConsulClient consulClient;
     private final ApplicationContext applicationContext;
     private final HealthGrpc.HealthImplBase healthImplBase;
+    private final ErrorServerInterceptor errorServerInterceptor;
     private Server grpcServer;
 
     public GrpcConsulProviderRoundProcessor(ConsulProperties consulProperties,
                                             ConsulClient consulClient,
                                             ApplicationContext applicationContext,
-                                            HealthGrpc.HealthImplBase healthImplBase) {
+                                            HealthGrpc.HealthImplBase healthImplBase,
+                                            ErrorServerInterceptor errorServerInterceptor) {
         this.discoveryProperties = consulProperties.getDiscovery();
         this.consulClient = consulClient;
         this.applicationContext = applicationContext;
         this.healthImplBase = healthImplBase;
+        this.errorServerInterceptor = errorServerInterceptor;
     }
 
     private static NewService getNewService(DiscoveryProperties.Service serviceProperties) {
@@ -92,7 +96,7 @@ public class GrpcConsulProviderRoundProcessor implements ApplicationListener<App
 
         // 启动grpc服务
         try {
-            this.grpcServer = serverBuilder.build().start();
+            this.grpcServer = serverBuilder.intercept(this.errorServerInterceptor).build().start();
         } catch (IOException e) {
             throw new DiscoveryStarterException("grpc服务启动失败", e);
         }
