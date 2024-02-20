@@ -1,16 +1,15 @@
 package com.baozi.consul.discovery.processor;
 
 import com.baozi.consul.ConsulClient;
-import com.baozi.consul.discovery.properties.ConsulProperties;
-import com.baozi.consul.discovery.properties.DiscoveryProperties;
 import com.baozi.consul.discovery.annotations.GrpcReference;
 import com.baozi.consul.discovery.exception.FieldInitializationException;
 import com.baozi.consul.discovery.grpc.resover.provider.ConsulNameResolverProvider;
+import com.baozi.consul.discovery.properties.ConsulProperties;
+import com.baozi.consul.discovery.properties.DiscoveryProperties;
 import io.grpc.Channel;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.NameResolverRegistry;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
@@ -54,7 +53,7 @@ public class GrpcClientBeanPostProcessor implements BeanPostProcessor {
     }
 
     @Override
-    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+    public Object postProcessAfterInitialization(Object bean, String beanName) {
         Field[] fields = bean.getClass().getDeclaredFields();
         for (Field field : fields) {
             GrpcReference grpcReference = field.getAnnotation(GrpcReference.class);
