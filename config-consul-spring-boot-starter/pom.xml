@@ -27,10 +27,9 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-
         <dependency>
             <groupId>com.baozi</groupId>
-            <artifactId>common-consul-spring-boot-starter</artifactId>
+            <artifactId>common-grpc-consul</artifactId>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>

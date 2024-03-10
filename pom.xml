@@ -11,7 +11,9 @@
     <modules>
         <module>discovery-consul-spring-boot-starter</module>
         <module>config-consul-spring-boot-starter</module>
-        <module>common-consul-spring-boot-starter</module>
+        <module>discovery-consul</module>
+        <module>common-grpc-consul</module>
+        <module>config-consul</module>
     </modules>
 
     <properties>
@@ -22,8 +24,9 @@
         <grpc.version>1.60.0</grpc.version>
         <consul-api.version>1.0.0</consul-api.version>
         <fastjson.version>2.0.45</fastjson.version>
-        <common-consul-spring-boot-starter.version>1.0.0</common-consul-spring-boot-starter.version>
+        <grpc-consul-spring-boot-starter.version>1.0.0</grpc-consul-spring-boot-starter.version>
         <guava.version>33.0.0-jre</guava.version>
+        <reflections.version>0.10.2</reflections.version>
     </properties>
 
     <dependencyManagement>
@@ -47,8 +50,13 @@
 
             <dependency>
                 <groupId>com.baozi</groupId>
-                <artifactId>common-consul-spring-boot-starter</artifactId>
-                <version>${common-consul-spring-boot-starter.version}</version>
+                <artifactId>discovery-consul</artifactId>
+                <version>${grpc-consul-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baozi</groupId>
+                <artifactId>common-grpc-consul</artifactId>
+                <version>${grpc-consul-spring-boot-starter.version}</version>
             </dependency>
 
             <dependency>
@@ -88,6 +96,13 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.reflections/reflections -->
+            <dependency>
+                <groupId>org.reflections</groupId>
+                <artifactId>reflections</artifactId>
+                <version>${reflections.version}</version>
             </dependency>
 
         </dependencies>
