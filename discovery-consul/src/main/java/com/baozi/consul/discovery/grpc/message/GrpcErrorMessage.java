@@ -22,7 +22,7 @@ public final class GrpcErrorMessage {
      * <code>string serviceName = 1;</code>
      * @return The serviceName.
      */
-    String getServiceName();
+    java.lang.String getServiceName();
     /**
      * <code>string serviceName = 1;</code>
      * @return The bytes for serviceName.
@@ -34,7 +34,7 @@ public final class GrpcErrorMessage {
      * <code>string reason = 2;</code>
      * @return The reason.
      */
-    String getReason();
+    java.lang.String getReason();
     /**
      * <code>string reason = 2;</code>
      * @return The bytes for reason.
@@ -50,31 +50,31 @@ public final class GrpcErrorMessage {
      * <code>map&lt;string, string&gt; metadata = 3;</code>
      */
     boolean containsMetadata(
-        String key);
+        java.lang.String key);
     /**
      * Use {@link #getMetadataMap()} instead.
      */
-    @Deprecated
-    java.util.Map<String, String>
+    @java.lang.Deprecated
+    java.util.Map<java.lang.String, java.lang.String>
     getMetadata();
     /**
      * <code>map&lt;string, string&gt; metadata = 3;</code>
      */
-    java.util.Map<String, String>
+    java.util.Map<java.lang.String, java.lang.String>
     getMetadataMap();
     /**
      * <code>map&lt;string, string&gt; metadata = 3;</code>
      */
     /* nullable */
-String getMetadataOrDefault(
-        String key,
+java.lang.String getMetadataOrDefault(
+        java.lang.String key,
         /* nullable */
-String defaultValue);
+java.lang.String defaultValue);
     /**
      * <code>map&lt;string, string&gt; metadata = 3;</code>
      */
-    String getMetadataOrThrow(
-        String key);
+    java.lang.String getMetadataOrThrow(
+        java.lang.String key);
   }
   /**
    * Protobuf type {@code com.baozi.consul.discovery.grpc.message.ErrorMessage}
@@ -93,20 +93,20 @@ String defaultValue);
       reason_ = "";
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new ErrorMessage();
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return GrpcErrorMessage.internal_static_com_baozi_consul_discovery_grpc_message_ErrorMessage_descriptor;
+      return com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.internal_static_com_baozi_consul_discovery_grpc_message_ErrorMessage_descriptor;
     }
 
     @SuppressWarnings({"rawtypes"})
-    @Override
+    @java.lang.Override
     protected com.google.protobuf.MapField internalGetMapField(
         int number) {
       switch (number) {
@@ -117,30 +117,30 @@ String defaultValue);
               "Invalid map field number: " + number);
       }
     }
-    @Override
+    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return GrpcErrorMessage.internal_static_com_baozi_consul_discovery_grpc_message_ErrorMessage_fieldAccessorTable
+      return com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.internal_static_com_baozi_consul_discovery_grpc_message_ErrorMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ErrorMessage.class, Builder.class);
+              com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage.class, com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage.Builder.class);
     }
 
     public static final int SERVICENAME_FIELD_NUMBER = 1;
     @SuppressWarnings("serial")
-    private volatile Object serviceName_ = "";
+    private volatile java.lang.Object serviceName_ = "";
     /**
      * <code>string serviceName = 1;</code>
      * @return The serviceName.
      */
-    @Override
-    public String getServiceName() {
-      Object ref = serviceName_;
-      if (ref instanceof String) {
-        return (String) ref;
+    @java.lang.Override
+    public java.lang.String getServiceName() {
+      java.lang.Object ref = serviceName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         serviceName_ = s;
         return s;
       }
@@ -149,14 +149,14 @@ String defaultValue);
      * <code>string serviceName = 1;</code>
      * @return The bytes for serviceName.
      */
-    @Override
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getServiceNameBytes() {
-      Object ref = serviceName_;
-      if (ref instanceof String) {
+      java.lang.Object ref = serviceName_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         serviceName_ = b;
         return b;
       } else {
@@ -166,20 +166,20 @@ String defaultValue);
 
     public static final int REASON_FIELD_NUMBER = 2;
     @SuppressWarnings("serial")
-    private volatile Object reason_ = "";
+    private volatile java.lang.Object reason_ = "";
     /**
      * <code>string reason = 2;</code>
      * @return The reason.
      */
-    @Override
-    public String getReason() {
-      Object ref = reason_;
-      if (ref instanceof String) {
-        return (String) ref;
+    @java.lang.Override
+    public java.lang.String getReason() {
+      java.lang.Object ref = reason_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         reason_ = s;
         return s;
       }
@@ -188,14 +188,14 @@ String defaultValue);
      * <code>string reason = 2;</code>
      * @return The bytes for reason.
      */
-    @Override
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getReasonBytes() {
-      Object ref = reason_;
-      if (ref instanceof String) {
+      java.lang.Object ref = reason_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         reason_ = b;
         return b;
       } else {
@@ -206,10 +206,10 @@ String defaultValue);
     public static final int METADATA_FIELD_NUMBER = 3;
     private static final class MetadataDefaultEntryHolder {
       static final com.google.protobuf.MapEntry<
-          String, String> defaultEntry =
+          java.lang.String, java.lang.String> defaultEntry =
               com.google.protobuf.MapEntry
-              .<String, String>newDefaultInstance(
-                  GrpcErrorMessage.internal_static_com_baozi_consul_discovery_grpc_message_ErrorMessage_MetadataEntry_descriptor,
+              .<java.lang.String, java.lang.String>newDefaultInstance(
+                  com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.internal_static_com_baozi_consul_discovery_grpc_message_ErrorMessage_MetadataEntry_descriptor, 
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "",
                   com.google.protobuf.WireFormat.FieldType.STRING,
@@ -217,8 +217,8 @@ String defaultValue);
     }
     @SuppressWarnings("serial")
     private com.google.protobuf.MapField<
-        String, String> metadata_;
-    private com.google.protobuf.MapField<String, String>
+        java.lang.String, java.lang.String> metadata_;
+    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
     internalGetMetadata() {
       if (metadata_ == null) {
         return com.google.protobuf.MapField.emptyMapField(
@@ -232,58 +232,58 @@ String defaultValue);
     /**
      * <code>map&lt;string, string&gt; metadata = 3;</code>
      */
-    @Override
+    @java.lang.Override
     public boolean containsMetadata(
-        String key) {
+        java.lang.String key) {
       if (key == null) { throw new NullPointerException("map key"); }
       return internalGetMetadata().getMap().containsKey(key);
     }
     /**
      * Use {@link #getMetadataMap()} instead.
      */
-    @Override
-    @Deprecated
-    public java.util.Map<String, String> getMetadata() {
+    @java.lang.Override
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, java.lang.String> getMetadata() {
       return getMetadataMap();
     }
     /**
      * <code>map&lt;string, string&gt; metadata = 3;</code>
      */
-    @Override
-    public java.util.Map<String, String> getMetadataMap() {
+    @java.lang.Override
+    public java.util.Map<java.lang.String, java.lang.String> getMetadataMap() {
       return internalGetMetadata().getMap();
     }
     /**
      * <code>map&lt;string, string&gt; metadata = 3;</code>
      */
-    @Override
+    @java.lang.Override
     public /* nullable */
-String getMetadataOrDefault(
-        String key,
+java.lang.String getMetadataOrDefault(
+        java.lang.String key,
         /* nullable */
-String defaultValue) {
+java.lang.String defaultValue) {
       if (key == null) { throw new NullPointerException("map key"); }
-      java.util.Map<String, String> map =
+      java.util.Map<java.lang.String, java.lang.String> map =
           internalGetMetadata().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
      * <code>map&lt;string, string&gt; metadata = 3;</code>
      */
-    @Override
-    public String getMetadataOrThrow(
-        String key) {
+    @java.lang.Override
+    public java.lang.String getMetadataOrThrow(
+        java.lang.String key) {
       if (key == null) { throw new NullPointerException("map key"); }
-      java.util.Map<String, String> map =
+      java.util.Map<java.lang.String, java.lang.String> map =
           internalGetMetadata().getMap();
       if (!map.containsKey(key)) {
-        throw new IllegalArgumentException();
+        throw new java.lang.IllegalArgumentException();
       }
       return map.get(key);
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -293,7 +293,7 @@ String defaultValue) {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(serviceName_)) {
@@ -311,7 +311,7 @@ String defaultValue) {
       getUnknownFields().writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -323,9 +323,9 @@ String defaultValue) {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(reason_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, reason_);
       }
-      for (java.util.Map.Entry<String, String> entry
+      for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
            : internalGetMetadata().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<String, String>
+        com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
         metadata__ = MetadataDefaultEntryHolder.defaultEntry.newBuilderForType()
             .setKey(entry.getKey())
             .setValue(entry.getValue())
@@ -338,15 +338,15 @@ String defaultValue) {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof ErrorMessage)) {
+      if (!(obj instanceof com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage)) {
         return super.equals(obj);
       }
-      ErrorMessage other = (ErrorMessage) obj;
+      com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage other = (com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage) obj;
 
       if (!getServiceName()
           .equals(other.getServiceName())) return false;
@@ -358,7 +358,7 @@ String defaultValue) {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -378,44 +378,44 @@ String defaultValue) {
       return hash;
     }
 
-    public static ErrorMessage parseFrom(
+    public static com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ErrorMessage parseFrom(
+    public static com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ErrorMessage parseFrom(
+    public static com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ErrorMessage parseFrom(
+    public static com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ErrorMessage parseFrom(byte[] data)
+    public static com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ErrorMessage parseFrom(
+    public static com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ErrorMessage parseFrom(java.io.InputStream input)
+    public static com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ErrorMessage parseFrom(
+    public static com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -423,26 +423,26 @@ String defaultValue) {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static ErrorMessage parseDelimitedFrom(java.io.InputStream input)
+    public static com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
 
-    public static ErrorMessage parseDelimitedFrom(
+    public static com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ErrorMessage parseFrom(
+    public static com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ErrorMessage parseFrom(
+    public static com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -450,21 +450,21 @@ String defaultValue) {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ErrorMessage prototype) {
+    public static Builder newBuilder(com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -476,10 +476,10 @@ String defaultValue) {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.baozi.consul.discovery.grpc.message.ErrorMessage)
-        ErrorMessageOrBuilder {
+        com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return GrpcErrorMessage.internal_static_com_baozi_consul_discovery_grpc_message_ErrorMessage_descriptor;
+        return com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.internal_static_com_baozi_consul_discovery_grpc_message_ErrorMessage_descriptor;
       }
 
       @SuppressWarnings({"rawtypes"})
@@ -504,12 +504,12 @@ String defaultValue) {
                 "Invalid map field number: " + number);
         }
       }
-      @Override
+      @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return GrpcErrorMessage.internal_static_com_baozi_consul_discovery_grpc_message_ErrorMessage_fieldAccessorTable
+        return com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.internal_static_com_baozi_consul_discovery_grpc_message_ErrorMessage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ErrorMessage.class, Builder.class);
+                com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage.class, com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage.Builder.class);
       }
 
       // Construct using com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage.newBuilder()
@@ -522,7 +522,7 @@ String defaultValue) {
         super(parent);
 
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
@@ -532,35 +532,35 @@ String defaultValue) {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return GrpcErrorMessage.internal_static_com_baozi_consul_discovery_grpc_message_ErrorMessage_descriptor;
+        return com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.internal_static_com_baozi_consul_discovery_grpc_message_ErrorMessage_descriptor;
       }
 
-      @Override
-      public ErrorMessage getDefaultInstanceForType() {
-        return ErrorMessage.getDefaultInstance();
+      @java.lang.Override
+      public com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage getDefaultInstanceForType() {
+        return com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage.getDefaultInstance();
       }
 
-      @Override
-      public ErrorMessage build() {
-        ErrorMessage result = buildPartial();
+      @java.lang.Override
+      public com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage build() {
+        com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public ErrorMessage buildPartial() {
-        ErrorMessage result = new ErrorMessage(this);
+      @java.lang.Override
+      public com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage buildPartial() {
+        com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage result = new com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage(this);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      private void buildPartial0(ErrorMessage result) {
+      private void buildPartial0(com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage result) {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.serviceName_ = serviceName_;
@@ -574,50 +574,50 @@ String defaultValue) {
         }
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ErrorMessage) {
-          return mergeFrom((ErrorMessage)other);
+        if (other instanceof com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage) {
+          return mergeFrom((com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ErrorMessage other) {
-        if (other == ErrorMessage.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage other) {
+        if (other == com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage.getDefaultInstance()) return this;
         if (!other.getServiceName().isEmpty()) {
           serviceName_ = other.serviceName_;
           bitField0_ |= 0x00000001;
@@ -636,18 +636,18 @@ String defaultValue) {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
         if (extensionRegistry == null) {
-          throw new NullPointerException();
+          throw new java.lang.NullPointerException();
         }
         try {
           boolean done = false;
@@ -668,7 +668,7 @@ String defaultValue) {
                 break;
               } // case 18
               case 26: {
-                com.google.protobuf.MapEntry<String, String>
+                com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
                 metadata__ = input.readMessage(
                     MetadataDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
                 internalGetMutableMetadata().getMutableMap().put(
@@ -693,21 +693,21 @@ String defaultValue) {
       }
       private int bitField0_;
 
-      private Object serviceName_ = "";
+      private java.lang.Object serviceName_ = "";
       /**
        * <code>string serviceName = 1;</code>
        * @return The serviceName.
        */
-      public String getServiceName() {
-        Object ref = serviceName_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getServiceName() {
+        java.lang.Object ref = serviceName_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           serviceName_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -716,11 +716,11 @@ String defaultValue) {
        */
       public com.google.protobuf.ByteString
           getServiceNameBytes() {
-        Object ref = serviceName_;
+        java.lang.Object ref = serviceName_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           serviceName_ = b;
           return b;
         } else {
@@ -733,7 +733,7 @@ String defaultValue) {
        * @return This builder for chaining.
        */
       public Builder setServiceName(
-          String value) {
+          java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
         serviceName_ = value;
         bitField0_ |= 0x00000001;
@@ -765,21 +765,21 @@ String defaultValue) {
         return this;
       }
 
-      private Object reason_ = "";
+      private java.lang.Object reason_ = "";
       /**
        * <code>string reason = 2;</code>
        * @return The reason.
        */
-      public String getReason() {
-        Object ref = reason_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getReason() {
+        java.lang.Object ref = reason_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           reason_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -788,11 +788,11 @@ String defaultValue) {
        */
       public com.google.protobuf.ByteString
           getReasonBytes() {
-        Object ref = reason_;
+        java.lang.Object ref = reason_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           reason_ = b;
           return b;
         } else {
@@ -805,7 +805,7 @@ String defaultValue) {
        * @return This builder for chaining.
        */
       public Builder setReason(
-          String value) {
+          java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
         reason_ = value;
         bitField0_ |= 0x00000002;
@@ -838,8 +838,8 @@ String defaultValue) {
       }
 
       private com.google.protobuf.MapField<
-          String, String> metadata_;
-      private com.google.protobuf.MapField<String, String>
+          java.lang.String, java.lang.String> metadata_;
+      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
           internalGetMetadata() {
         if (metadata_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
@@ -847,7 +847,7 @@ String defaultValue) {
         }
         return metadata_;
       }
-      private com.google.protobuf.MapField<String, String>
+      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
           internalGetMutableMetadata() {
         if (metadata_ == null) {
           metadata_ = com.google.protobuf.MapField.newMapField(
@@ -866,52 +866,52 @@ String defaultValue) {
       /**
        * <code>map&lt;string, string&gt; metadata = 3;</code>
        */
-      @Override
+      @java.lang.Override
       public boolean containsMetadata(
-          String key) {
+          java.lang.String key) {
         if (key == null) { throw new NullPointerException("map key"); }
         return internalGetMetadata().getMap().containsKey(key);
       }
       /**
        * Use {@link #getMetadataMap()} instead.
        */
-      @Override
-      @Deprecated
-      public java.util.Map<String, String> getMetadata() {
+      @java.lang.Override
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, java.lang.String> getMetadata() {
         return getMetadataMap();
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 3;</code>
        */
-      @Override
-      public java.util.Map<String, String> getMetadataMap() {
+      @java.lang.Override
+      public java.util.Map<java.lang.String, java.lang.String> getMetadataMap() {
         return internalGetMetadata().getMap();
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 3;</code>
        */
-      @Override
+      @java.lang.Override
       public /* nullable */
-String getMetadataOrDefault(
-          String key,
+java.lang.String getMetadataOrDefault(
+          java.lang.String key,
           /* nullable */
-String defaultValue) {
+java.lang.String defaultValue) {
         if (key == null) { throw new NullPointerException("map key"); }
-        java.util.Map<String, String> map =
+        java.util.Map<java.lang.String, java.lang.String> map =
             internalGetMetadata().getMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 3;</code>
        */
-      @Override
-      public String getMetadataOrThrow(
-          String key) {
+      @java.lang.Override
+      public java.lang.String getMetadataOrThrow(
+          java.lang.String key) {
         if (key == null) { throw new NullPointerException("map key"); }
-        java.util.Map<String, String> map =
+        java.util.Map<java.lang.String, java.lang.String> map =
             internalGetMetadata().getMap();
         if (!map.containsKey(key)) {
-          throw new IllegalArgumentException();
+          throw new java.lang.IllegalArgumentException();
         }
         return map.get(key);
       }
@@ -925,7 +925,7 @@ String defaultValue) {
        * <code>map&lt;string, string&gt; metadata = 3;</code>
        */
       public Builder removeMetadata(
-          String key) {
+          java.lang.String key) {
         if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableMetadata().getMutableMap()
             .remove(key);
@@ -934,8 +934,8 @@ String defaultValue) {
       /**
        * Use alternate mutation accessors instead.
        */
-      @Deprecated
-      public java.util.Map<String, String>
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, java.lang.String>
           getMutableMetadata() {
         bitField0_ |= 0x00000004;
         return internalGetMutableMetadata().getMutableMap();
@@ -944,8 +944,8 @@ String defaultValue) {
        * <code>map&lt;string, string&gt; metadata = 3;</code>
        */
       public Builder putMetadata(
-          String key,
-          String value) {
+          java.lang.String key,
+          java.lang.String value) {
         if (key == null) { throw new NullPointerException("map key"); }
         if (value == null) { throw new NullPointerException("map value"); }
         internalGetMutableMetadata().getMutableMap()
@@ -957,19 +957,19 @@ String defaultValue) {
        * <code>map&lt;string, string&gt; metadata = 3;</code>
        */
       public Builder putAllMetadata(
-          java.util.Map<String, String> values) {
+          java.util.Map<java.lang.String, java.lang.String> values) {
         internalGetMutableMetadata().getMutableMap()
             .putAll(values);
         bitField0_ |= 0x00000004;
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -980,18 +980,18 @@ String defaultValue) {
     }
 
     // @@protoc_insertion_point(class_scope:com.baozi.consul.discovery.grpc.message.ErrorMessage)
-    private static final ErrorMessage DEFAULT_INSTANCE;
+    private static final com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ErrorMessage();
+      DEFAULT_INSTANCE = new com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage();
     }
 
-    public static ErrorMessage getDefaultInstance() {
+    public static com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<ErrorMessage>
         PARSER = new com.google.protobuf.AbstractParser<ErrorMessage>() {
-      @Override
+      @java.lang.Override
       public ErrorMessage parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1015,13 +1015,13 @@ String defaultValue) {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<ErrorMessage> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public ErrorMessage getDefaultInstanceForType() {
+    @java.lang.Override
+    public com.baozi.consul.discovery.grpc.message.GrpcErrorMessage.ErrorMessage getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1045,7 +1045,7 @@ String defaultValue) {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n\030grpc-error-message.proto\022\'com.baozi.co" +
       "nsul.discovery.grpc.message\"\273\001\n\014ErrorMes" +
       "sage\022\023\n\013serviceName\030\001 \001(\t\022\016\n\006reason\030\002 \001(" +
@@ -1065,13 +1065,13 @@ String defaultValue) {
     internal_static_com_baozi_consul_discovery_grpc_message_ErrorMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_baozi_consul_discovery_grpc_message_ErrorMessage_descriptor,
-        new String[] { "ServiceName", "Reason", "Metadata", });
+        new java.lang.String[] { "ServiceName", "Reason", "Metadata", });
     internal_static_com_baozi_consul_discovery_grpc_message_ErrorMessage_MetadataEntry_descriptor =
       internal_static_com_baozi_consul_discovery_grpc_message_ErrorMessage_descriptor.getNestedTypes().get(0);
     internal_static_com_baozi_consul_discovery_grpc_message_ErrorMessage_MetadataEntry_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_baozi_consul_discovery_grpc_message_ErrorMessage_MetadataEntry_descriptor,
-        new String[] { "Key", "Value", });
+        new java.lang.String[] { "Key", "Value", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

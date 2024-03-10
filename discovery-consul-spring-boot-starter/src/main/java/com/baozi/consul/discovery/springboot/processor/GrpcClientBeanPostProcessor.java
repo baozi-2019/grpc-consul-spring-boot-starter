@@ -2,10 +2,10 @@ package com.baozi.consul.discovery.springboot.processor;
 
 import com.baozi.consul.ConsulClient;
 import com.baozi.consul.discovery.grpc.resover.provider.ConsulNameResolverProvider;
+import com.baozi.consul.discovery.properties.DiscoveryProperties;
 import com.baozi.consul.discovery.springboot.annotations.GrpcReference;
 import com.baozi.consul.discovery.springboot.exception.FieldInitializationException;
 import com.baozi.consul.discovery.springboot.properties.ConsulProperties;
-import com.baozi.consul.discovery.springboot.properties.DiscoveryProperties;
 import io.grpc.Channel;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;

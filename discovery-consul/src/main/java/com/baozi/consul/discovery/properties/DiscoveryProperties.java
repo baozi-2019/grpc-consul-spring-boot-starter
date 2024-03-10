@@ -1,6 +1,6 @@
 package com.baozi.consul.discovery.properties;
 
-import com.baozi.consul.properties.HttpClientProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 public class DiscoveryProperties {
     private final static String HOST = "127.0.0.1";
@@ -11,6 +11,7 @@ public class DiscoveryProperties {
     private boolean client = false;
     private Service service;
     private String[] registerServiceNames;
+    @NestedConfigurationProperty
     private HttpClientProperties httpClient = new HttpClientProperties();
 
     public static class Service {

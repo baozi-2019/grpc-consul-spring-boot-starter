@@ -1,7 +1,7 @@
 package com.baozi.consul.discovery.springboot.config;
 
 import com.baozi.consul.ConsulClient;
-import com.baozi.consul.discovery.springboot.properties.DiscoveryProperties;
+import com.baozi.consul.discovery.properties.DiscoveryProperties;
 import com.baozi.consul.properties.ConsulProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

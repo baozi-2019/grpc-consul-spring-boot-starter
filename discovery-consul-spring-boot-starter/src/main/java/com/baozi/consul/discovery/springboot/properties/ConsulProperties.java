@@ -1,5 +1,6 @@
 package com.baozi.consul.discovery.springboot.properties;
 
+import com.baozi.consul.discovery.properties.DiscoveryProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
