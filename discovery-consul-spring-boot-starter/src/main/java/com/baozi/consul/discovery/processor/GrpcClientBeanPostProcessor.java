@@ -60,7 +60,7 @@ public class GrpcClientBeanPostProcessor implements BeanPostProcessor {
             if (grpcReference == null) continue;
             field.setAccessible(true);
             // 生成grpc client key
-            String grpcClientKey = bean.getClass().getTypeName() + "-" + field.getName();
+            String grpcClientKey = field.getType().getCanonicalName();
             Object blockingStub;
             if ((blockingStub = this.grpcClientMap.get(grpcClientKey)) == null) {
                 // 缓存中不存在client 生成一个

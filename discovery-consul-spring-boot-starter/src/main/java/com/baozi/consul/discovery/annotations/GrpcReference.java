@@ -1,7 +1,5 @@
 package com.baozi.consul.discovery.annotations;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
