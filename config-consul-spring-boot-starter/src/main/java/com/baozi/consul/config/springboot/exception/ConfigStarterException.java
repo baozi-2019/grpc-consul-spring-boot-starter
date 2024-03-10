@@ -1,4 +1,4 @@
-package com.baozi.consul.config.exception;
+package com.baozi.consul.config.springboot.exception;
 
 import java.io.Serial;
 

@@ -1,11 +1,11 @@
-package com.baozi.consul.config.processor;
+package com.baozi.consul.config.springboot.processor;
 
 import com.baozi.consul.ConsulClient;
 import com.baozi.consul.bean.kv.KVStore;
 import com.baozi.consul.common.Constant;
-import com.baozi.consul.config.exception.ConfigStarterException;
-import com.baozi.consul.config.properties.ConfigProperties;
-import com.baozi.consul.config.properties.ConsulProperties;
+import com.baozi.consul.config.springboot.exception.ConfigStarterException;
+import com.baozi.consul.config.springboot.properties.ConfigProperties;
+import com.baozi.consul.config.springboot.properties.ConsulProperties;
 import com.baozi.consul.exception.ConsulClientException;
 import com.google.common.base.CaseFormat;
 import org.springframework.boot.SpringApplication;

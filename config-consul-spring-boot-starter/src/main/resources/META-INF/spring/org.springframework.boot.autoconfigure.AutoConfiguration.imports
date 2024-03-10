@@ -1,1 +1,1 @@
-com.baozi.consul.config.ConfigConsulAutoConfiguration
+com.baozi.consul.config.springboot.ConfigConsulAutoConfiguration
