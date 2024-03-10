@@ -32,6 +32,10 @@
             <artifactId>common-grpc-consul</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.baozi</groupId>
+            <artifactId>config-consul</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>

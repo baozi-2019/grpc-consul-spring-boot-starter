@@ -1,5 +1,6 @@
 package com.baozi.consul.config.springboot.properties;
 
+import com.baozi.consul.config.properties.ConfigProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 

@@ -55,6 +55,11 @@
             </dependency>
             <dependency>
                 <groupId>com.baozi</groupId>
+                <artifactId>config-consul</artifactId>
+                <version>${grpc-consul-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baozi</groupId>
                 <artifactId>common-grpc-consul</artifactId>
                 <version>${grpc-consul-spring-boot-starter.version}</version>
             </dependency>
