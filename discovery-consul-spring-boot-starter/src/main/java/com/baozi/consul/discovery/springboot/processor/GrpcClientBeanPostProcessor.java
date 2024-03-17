@@ -61,14 +61,14 @@ public class GrpcClientBeanPostProcessor implements BeanPostProcessor {
             field.setAccessible(true);
             // 生成grpc client key
             String grpcClientKey = field.getType().getCanonicalName();
-            Object blockingStub;
-            if ((blockingStub = this.grpcClientMap.get(grpcClientKey)) == null) {
+            Object grpcInstance;
+            if ((grpcInstance = this.grpcClientMap.get(grpcClientKey)) == null) {
                 // 缓存中不存在client 生成一个
-                blockingStub = this.generateGrpcClient(grpcReference, field.getType().getDeclaringClass());
-                this.grpcClientMap.put(grpcClientKey, blockingStub);
+                grpcInstance = this.generateGrpcClient(grpcReference, field.getType().getDeclaringClass());
+                this.grpcClientMap.put(grpcClientKey, grpcInstance);
             }
             try {
-                field.set(bean, blockingStub);
+                field.set(bean, grpcInstance);
             } catch (IllegalAccessException e) {
                 throw new FieldInitializationException("属性设置失败", e);
             }
@@ -81,7 +81,11 @@ public class GrpcClientBeanPostProcessor implements BeanPostProcessor {
             // 实例化GRPC对象
             String localServiceName = grpcReference.serviceName();
             Channel grpcChannel = this.grpcChannelMap.get(localServiceName);
-            Method serviceBuildClassMethod = serviceBuildClass.getMethod("newBlockingStub", Channel.class);
+            Method serviceBuildClassMethod = switch (grpcReference.grpcType()) {
+                case BLOCKING_STUB -> serviceBuildClass.getMethod("newBlockingStub", Channel.class);
+                case STUB -> serviceBuildClass.getMethod("newStub", Channel.class);
+                case FUTURE_STUB -> serviceBuildClass.getMethod("newFutureStub", Channel.class);
+            };
             return serviceBuildClassMethod.invoke(null, grpcChannel);
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             throw new BeanCreationException("grpc创建失败", e);
